@@ -3,7 +3,7 @@ import { API_SERVER } from "../config/constant";
 
 const axios = Axios.create({
   baseURL: `${API_SERVER}`,
-  headers: { "Content-Type": "application/json" },
+  // headers: { "Content-Type": "application/json" },
 });
 
 axios.interceptors.request.use(
@@ -15,7 +15,11 @@ axios.interceptors.request.use(
           config.headers.Authorization = `Bearer ${user.token}`;
         }
       }
-
+      if (config.data instanceof FormData) {
+        config.headers["Content-Type"] = "multipart/form-data";
+      } else {
+        config.headers["Content-Type"] = "application/json";
+      }
     return Promise.resolve(config);
   },
   (error) => Promise.reject(error)

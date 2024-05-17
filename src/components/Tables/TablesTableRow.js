@@ -12,15 +12,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import SweetAlert from "react-bootstrap-sweetalert";
 import UsersApi from "api/users";
+import { toast } from "react-toastify";
 
-function TablesTableRow({item,link}) {
+function TablesTableRow({item,link,deleteFunction,refetch,Notify}) {
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
   const confirmDelete = async (id) => {
-    alert(id)
+  
     try {
-      let q=await UsersApi.DeleteUser(id)
+      let q=await deleteFunction(id)
+      refetch()
+      console.log(q.data.message);
+      Notify(q.data.message)
       
     } catch (error) {
       console.log(error.message);
@@ -33,18 +37,30 @@ function TablesTableRow({item,link}) {
 
 
       <Tr>
-        {Object.entries(item).map(([key, value]) => (
-          <Td key={key}>
-              <Text
-                fontSize="md"
-                color={textColor}
-                fontWeight={key === "name" ? "bold" : "normal"}
-              >
-                {value}
-              </Text>
-          
-          </Td>
-        ))}
+        {Object.entries(item).map(([key, value]) => {
+          if(key=="image_path"){
+            return(
+              <Td key={key}>
+                          <Avatar src={value} w="50px" borderRadius="12px" me="18px" />
+
+              
+              </Td>
+            )
+          }else{
+            return(
+              <Td key={key}>
+                  <Text
+                    fontSize="md"
+                    color={textColor}
+                    fontWeight={key === "name" ? "bold" : "normal"}
+                  >
+                    {value}
+                  </Text>
+              
+              </Td>
+            )
+          }
+        })}
       
         <Td>
           <Flex direction={"row"} justifyContent={"space-between"}>

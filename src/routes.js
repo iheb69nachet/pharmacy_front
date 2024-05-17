@@ -20,6 +20,11 @@ import {
 import Users from "views/Users";
 import AddUsers from "views/Users/add";
 import EditUser from "views/Users/edit";
+import Products from "views/Products";
+import AddProducts from "views/Products/add";
+import { ProductIcon } from "components/Icons/Icons";
+import Chat from "views/Chat";
+import EditProduct from "views/Products/edit";
 
 var dashRoutes = [
   {
@@ -42,6 +47,36 @@ var dashRoutes = [
     name: "userEdit",
     icon: <PersonIcon color="inherit" />,
     component: EditUser,
+    layout: "/admin",
+    hide:true
+  },
+  {
+    path: "/products",
+    name: "Products",
+    icon: <ProductIcon color="inherit" />,
+    component: Products,
+    layout: "/admin",
+  },
+  {
+    path: "/chat",
+    name: "Chat",
+    icon: <ProductIcon color="inherit" />,
+    component: Chat,
+    layout: "/admin",
+  },
+  {
+    path: "/add/products",
+    name: "ProductsAdd",
+    icon: <PersonIcon color="inherit" />,
+    component: AddProducts,
+    layout: "/admin",
+    hide:true
+  },
+  {
+    path: "/edit/product/:id",
+    name: "productsEdit",
+    icon: <PersonIcon color="inherit" />,
+    component: EditProduct,
     layout: "/admin",
     hide:true
   },

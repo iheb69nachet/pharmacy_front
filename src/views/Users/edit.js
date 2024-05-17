@@ -19,7 +19,7 @@ const EditUser = () => {
         const response=await UsersApi.fetchUser(id)
         setUser(response.data.data);
       } catch (error) {
-        setError(error);
+        
       } finally {
         // setLoading(false);
       }

@@ -121,6 +121,16 @@ export const CreativeTimLogo = createIcon({
   // >
   // </chakra.svg>
 });
+export const ProductIcon = createIcon({
+  displayName: "ProductIcon",
+  viewBox: "0 0 24 24",
+  path: (
+    <path
+      fill="currentColor"
+      d="M3.867 6.475v-.001a2.46 2.46 0 012.46-2.461h14.766a2.46 2.46 0 012.461 2.461v.001a2.46 2.46 0 01-2.46 2.46H6.327a2.46 2.46 0 01-2.46-2.46zM20.154 9.335v6.768a2.461 2.461 0 01-2.46 2.46H3.867a2.461 2.461 0 01-2.46-2.46v-6.768h18.747zM8.954 11.995a1.318 1.318 0 011.318-1.318h2.11a1.318 1.318 0 011.318 1.318v.879a1.318 1.318 0 01-1.318 1.318h-2.11a1.318 1.318 0 01-1.318-1.318v-.879zM20.154 3.014H3.867a2.46 2.46 0 00-2.46 2.461v1.143h19.687V5.475a2.46 2.46 0 00-2.46-2.461z"
+    />
+  ),
+});
 
 export const CreditIcon = createIcon({
   displayName: "CreditIcon",

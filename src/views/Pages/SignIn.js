@@ -39,7 +39,7 @@ function SignIn() {
       event.preventDefault();
     }
     if (user && user.token) {
-      return history.push("/dashboard");
+      return history.push("/admin/users");
     }
     if (email === "") {
       return setError("You must enter your email.");
@@ -74,7 +74,7 @@ function SignIn() {
     user = JSON.stringify(user);
     setUser(user);
     localStorage.setItem("user", user);
-    return history.push("/dashboard");
+    return   history.push("/admin/users");
   };
 
   return (
