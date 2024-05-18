@@ -8,22 +8,22 @@ import CardBody from "components/Card/CardBody.js";
   import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import UsersApi from '../../api/users';
+import CustomersApi from '../../api/cutomers';
 import { ToastContainer, toast } from 'react-toastify';
 
-const AddUsers = () => {
+const AddCustomers = () => {
 
     const validationSchema = Yup.object({
-        username: Yup.string().required('Username is required'),
+        first_name: Yup.string().required('First name is required'),
+        last_name: Yup.string().required('Last name is required'),
         email: Yup.string().email('Invalid email address').required('Email is required'),
-        password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-        role: Yup.string().required('Role is required'),
+        company: Yup.string().required('Username is required'),
       });
       
     const handleSubmit = async (values, { setSubmitting }) => {
         try {
             console.log(values);
-            const response=await UsersApi.AddUsers(values)
+            const response=await CustomersApi.AddCustomers(values)
         toast(response.data.message)
         } catch (error) {
         toast.error(error.response.data.message)
@@ -39,9 +39,9 @@ const AddUsers = () => {
             <CardHeader p="6px 0px 22px 0px" >
             <Flex direction='row' justify={"space-between"} w={"full"}> 
                 <Text fontSize="xl"  fontWeight="bold"  >
-                Add User
+                Add Customer
                 </Text>
-                <Link to={"/admin/users"}>
+                <Link to={"/admin/customers"}>
                 <Button colorscheme='red'>
                     Cancel
                 </Button>
@@ -51,7 +51,7 @@ const AddUsers = () => {
             <CardBody>
                 <Flex direction='row' justify={"space-between"} w={"full"}> 
                     <Formik
-                        initialValues={{ username: '', email: '', password: '', role: '' }}
+                        initialValues={{ first_name: '', last_name: '', email: '', company: '' }}
                         validationSchema={validationSchema}
                         onSubmit={handleSubmit}
                         >
@@ -60,17 +60,28 @@ const AddUsers = () => {
                             
                             <Form >
                             <Box mb={4}>
-                                <Field name="username">
+                                <Field name="first_name">
                                 {({ field, form }) => (
-                                    <FormControl isInvalid={form.errors.username && form.touched.username}>
-                                    <FormLabel htmlFor="username">Username</FormLabel>
-                                    <Input {...field} id="username" placeholder="Username" />
-                                    <FormErrorMessage>{form.errors.username}</FormErrorMessage>
+                                    <FormControl isInvalid={form.errors.first_name && form.touched.first_name}>
+                                    <FormLabel htmlFor="first_name">First name</FormLabel>
+                                    <Input {...field} id="first_name" placeholder="First name" />
+                                    <FormErrorMessage>{form.errors.first_name}</FormErrorMessage>
                                     </FormControl>
                                 )}
                                 </Field>
                             </Box>
                             
+                            <Box mb={4}>
+                                <Field name="last_name">
+                                {({ field, form }) => (
+                                    <FormControl isInvalid={form.errors.last_name && form.touched.last_name}>
+                                    <FormLabel htmlFor="last_name">Last name</FormLabel>
+                                    <Input {...field} id="last_name" placeholder="Last name" type="text" />
+                                    <FormErrorMessage>{form.errors.last_name}</FormErrorMessage>
+                                    </FormControl>
+                                )}
+                                </Field>
+                            </Box>
                             <Box mb={4}>
                                 <Field name="email">
                                 {({ field, form }) => (
@@ -82,34 +93,19 @@ const AddUsers = () => {
                                 )}
                                 </Field>
                             </Box>
-
                             <Box mb={4}>
-                                <Field name="password">
+                                <Field name="company">
                                 {({ field, form }) => (
-                                    <FormControl isInvalid={form.errors.password && form.touched.password}>
-                                    <FormLabel htmlFor="password">Password</FormLabel>
-                                    <Input {...field} id="password" placeholder="Password" type="password" />
-                                    <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                                    <FormControl isInvalid={form.errors.company && form.touched.company}>
+                                    <FormLabel htmlFor="company">Company</FormLabel>
+                                    <Input {...field} id="company" placeholder="Company" type="company" />
+                                    <FormErrorMessage>{form.errors.company}</FormErrorMessage>
                                     </FormControl>
                                 )}
                                 </Field>
                             </Box>
 
-                            <Box mb={4}>
-                                <Field name="role">
-                                {({ field, form }) => (
-                                    <FormControl isInvalid={form.errors.role && form.touched.role}>
-                                    <FormLabel htmlFor="role">Role</FormLabel>
-                                    <Select {...field} id="role" placeholder="Select role">
-                                        <option value="admin">Admin</option>
-                                        <option value="responsable">Responsable</option>
-                                        <option value="employe">Employe</option>
-                                    </Select>
-                                    <FormErrorMessage>{form.errors.role}</FormErrorMessage>
-                                    </FormControl>
-                                )}
-                                </Field>
-                            </Box>
+                            
 
                             <Button mt={4} colorscheme="teal" isLoading={isSubmitting} type="submit">
                                 Submit
@@ -126,4 +122,4 @@ const AddUsers = () => {
   )
 }
 
-export default AddUsers
+export default AddCustomers

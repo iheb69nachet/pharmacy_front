@@ -62,7 +62,7 @@ function TablesTableRow({item,link,deleteFunction,refetch,Notify,permission}) {
           }
         })}
       {
-        permission &&(
+        (permission && link && confirmDelete) &&(
           <Td>
           <Flex direction={"row"} justifyContent={"space-between"}>
             <Link to={`${link+item.id}`}>

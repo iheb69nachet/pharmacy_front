@@ -22,7 +22,7 @@ const Chat = () => {
         <Card>
             <CardHeader>sdfds</CardHeader>
             <CardBody>
-            <DrawerExample/>
+           <SocialProfileWithImage/>
             </CardBody>
         </Card>
         {/* <SocialProfileWithImage/> */}

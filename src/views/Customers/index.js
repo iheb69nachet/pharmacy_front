@@ -10,24 +10,27 @@ import {
   Tr,
   useColorModeValue,
 } from "@chakra-ui/react";
+import axios from 'api';
+import CustomersApi from '../../api/cutomers';
 import React, { useEffect, useState } from 'react'
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
+import TablesProjectRow from "components/Tables/TablesProjectRow";
 import TablesTableRow from "components/Tables/TablesTableRow";
+import { tablesProjectData, tablesTableData } from "variables/general";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { toast } from "react-toastify";
 import { hasPermission } from "helpers/permission";
-import UsersApi from '../../api/users';
 
-const Users = () => {
+const Customers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchUsers = async () => {
     try {
-      const response=await UsersApi.fetchUsers()
+      const response=await CustomersApi.fetchCustomers()
       setUsers(response.data.data);
     } catch (error) {
       toast.error(error.response.data.message)
@@ -53,9 +56,9 @@ const Users = () => {
         <CardHeader p="6px 0px 22px 0px" >
           <Flex direction='row' justify={"space-between"}w={"full"}> 
             <Text fontSize="xl" color={textColor} fontWeight="bold">
-              Users Table
+              Customers Table
             </Text>
-            <Link to={"add/users"}>
+            <Link to={"add/customers"}>
               <Button colorscheme='blue'>
                 Ajouter
               </Button>
@@ -81,8 +84,8 @@ const Users = () => {
                   return(
                     <TablesTableRow
                     item={row}
-                    link={"edit/user/"}
-                    deleteFunction={UsersApi.DeleteUser}
+                    link={"edit/customer/"}
+                    deleteFunction={CustomersApi.DeleteCustomer}
                     refetch={fetchUsers}
                     Notify={Notify}
                     key={row.id}
@@ -101,4 +104,4 @@ const Users = () => {
   );
 }
 
-export default Users;
+export default Customers;

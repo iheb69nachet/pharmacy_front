@@ -26,11 +26,16 @@ import { ProductIcon } from "components/Icons/Icons";
 import Chat from "views/Chat";
 import EditProduct from "views/Products/edit";
 import { hasPermission } from "helpers/permission";
+import AddCustomers from "views/Customers/add";
+import Customers from "views/Customers";
+import EditCustomer from "views/Customers/edit";
+import AddSales from "views/sales/add";
+import Sales from "views/sales";
 
 var dashRoutes = [
   {
     path: "/users",
-    name: "Users",
+    name: "Human Resource",
     icon: <PersonIcon color="inherit" />,
     component: Users,
     layout: "/admin",
@@ -57,9 +62,10 @@ var dashRoutes = [
     permission:'edit users'
 
   },
+  //products
   {
     path: "/products",
-    name: "Products",
+    name: "Inventory",
     icon: <ProductIcon color="inherit" />,
     component: Products,
     layout: "/admin",
@@ -68,13 +74,6 @@ var dashRoutes = [
     
 
 
-  },
-  {
-    path: "/chat",
-    name: "Chat",
-    icon: <ProductIcon color="inherit" />,
-    component: Chat,
-    layout: "/admin",
   },
   {
     path: "/add/products",
@@ -94,9 +93,66 @@ var dashRoutes = [
     layout: "/admin",
     hide:true,
     permission:'edit products'
+    
+  },
+  //customers
+  {
+    path: "/customers",
+    name: "Customers",
+    icon: <PersonIcon color="inherit" />,
+    component: Customers,
+    layout: "/admin",
+    hide:!hasPermission("view customers"),
+    permission:'view customers'
+  },
+  {
+    path: "/add/customers",
+    name: "CustomersAdd",
+    icon: <PersonIcon color="inherit" />,
+    component: AddCustomers,
+    layout: "/admin",
+    hide:true,
+    permission:'publish customers'
+  },
+  {
+    path: "/edit/customer/:id",
+    name: "customersEdit",
+    icon: <PersonIcon color="inherit" />,
+    component: EditCustomer,
+    layout: "/admin",
+    hide:true,
+    permission:'edit customers'
 
   },
- 
+  //sales
+  {
+    path: "/sales",
+    name: "Sales",
+    icon: <PersonIcon color="inherit" />,
+    component: Sales,
+    layout: "/admin",
+    hide:false,
+    permission:'edit customers'
+
+  },
+  {
+    path: "/add/sales",
+    name: "AddSales",
+    icon: <PersonIcon color="inherit" />,
+    component: AddSales,
+    layout: "/admin",
+    hide:true,
+    permission:'edit customers'
+
+  },
+  {
+    path: "/chat",
+    name: "Chat",
+    icon: <ProductIcon color="inherit" />,
+    component: Chat,
+    layout: "/admin",
+  },
+  
 
  
   
