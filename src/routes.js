@@ -25,6 +25,7 @@ import AddProducts from "views/Products/add";
 import { ProductIcon } from "components/Icons/Icons";
 import Chat from "views/Chat";
 import EditProduct from "views/Products/edit";
+import { hasPermission } from "helpers/permission";
 
 var dashRoutes = [
   {
@@ -33,6 +34,9 @@ var dashRoutes = [
     icon: <PersonIcon color="inherit" />,
     component: Users,
     layout: "/admin",
+    hide:!hasPermission("view users"),
+    permission:'view users'
+
   },
   {
     path: "/add/users",
@@ -40,7 +44,8 @@ var dashRoutes = [
     icon: <PersonIcon color="inherit" />,
     component: AddUsers,
     layout: "/admin",
-    hide:true
+    hide:true,
+    permission:'publish users'
   },
   {
     path: "/edit/user/:id",
@@ -48,7 +53,9 @@ var dashRoutes = [
     icon: <PersonIcon color="inherit" />,
     component: EditUser,
     layout: "/admin",
-    hide:true
+    hide:true,
+    permission:'edit users'
+
   },
   {
     path: "/products",
@@ -56,6 +63,11 @@ var dashRoutes = [
     icon: <ProductIcon color="inherit" />,
     component: Products,
     layout: "/admin",
+    hide:!hasPermission("view products"),
+    permission:'view products',
+    
+
+
   },
   {
     path: "/chat",
@@ -70,7 +82,9 @@ var dashRoutes = [
     icon: <PersonIcon color="inherit" />,
     component: AddProducts,
     layout: "/admin",
-    hide:true
+    hide:true,
+    permission:'publish products'
+
   },
   {
     path: "/edit/product/:id",
@@ -78,7 +92,9 @@ var dashRoutes = [
     icon: <PersonIcon color="inherit" />,
     component: EditProduct,
     layout: "/admin",
-    hide:true
+    hide:true,
+    permission:'edit products'
+
   },
  
 

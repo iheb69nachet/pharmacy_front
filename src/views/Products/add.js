@@ -70,7 +70,8 @@ const AddProducts = () => {
       const response = await ProductsApi.Addproducts(formData);
       toast(response.data.message);
     } catch (error) {
-      console.error('Error submitting form', error);
+      toast.error(error.response.data.message)
+      console.error('Error submitting form', error.response.data.message);
     } finally {
       setSubmitting(false);
     }

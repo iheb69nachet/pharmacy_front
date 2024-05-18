@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import UsersApi from '../../api/users';
 import { Routes, Route, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const EditUser = () => {
     let { id } = useParams();
@@ -58,13 +59,16 @@ const EditUser = () => {
             if (Object.keys(updatedValues).length > 0) {
                 const response = await UsersApi.EditUser(id, updatedValues);
                 await fetchUser()
+                toast(response.data.message)
                 console.log('Form submitted successfully', response.data);
             } else {
                 console.log('No changes to submit');
+                toast('No changes to submit')
             }
       
         } catch (error) {
-          console.error('Error submitting form', error);
+            toast.error(error.response.data.message)
+
         } finally {
           setSubmitting(false);
         }

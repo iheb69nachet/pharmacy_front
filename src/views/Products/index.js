@@ -18,6 +18,7 @@ import TablesTableRow from "components/Tables/TablesTableRow";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import ProductsApi from "../../api/products";
 import { toast } from "react-toastify";
+import { hasPermission } from "helpers/permission";
 
 const Products = () => {
   const [users, setUsers] = useState([]);
@@ -31,7 +32,7 @@ const Products = () => {
       const response=await ProductsApi.fetchproducts()
       setUsers(response.data.data);
     } catch (error) {
-      
+      toast.error(error.response.data.message)
     } finally {
       setLoading(false);
     }
@@ -52,11 +53,16 @@ const Products = () => {
             <Text fontSize="xl" color={textColor} fontWeight="bold">
               Products Table
             </Text>
-            <Link to={"add/products"}>
+            {
+              hasPermission("publish products")&&(
+                <Link to={"add/products"}>
               <Button colorscheme='blue'>
                 Ajouter
               </Button>
             </Link>
+              )
+            }
+            
           </Flex>
         </CardHeader>
         <CardBody overflowX="auto">
@@ -86,6 +92,7 @@ const Products = () => {
                     deleteFunction={ProductsApi.Deleteproduct}
                     refetch={fetchUsers}
                     Notify={Notify}
+                    permission={hasPermission("edit products")}
 
                     key={row.id}
                    

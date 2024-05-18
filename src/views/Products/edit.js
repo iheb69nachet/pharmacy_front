@@ -85,12 +85,11 @@ const EditProduct = () => {
     formData.append('price', values.price);
     formData.append('qty', values.qty);
     formData.append('type', values.type);
-
     try {
       const response = await ProductsApi.Editproduct(id, formData);
       toast(response.data.message);
     } catch (error) {
-      console.error('Error submitting form', error);
+      toast.error(error.response.data.message);
     } finally {
       setSubmitting(false);
     }

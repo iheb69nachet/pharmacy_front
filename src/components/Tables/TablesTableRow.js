@@ -14,7 +14,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import UsersApi from "api/users";
 import { toast } from "react-toastify";
 
-function TablesTableRow({item,link,deleteFunction,refetch,Notify}) {
+function TablesTableRow({item,link,deleteFunction,refetch,Notify,permission}) {
   const textColor = useColorModeValue("gray.700", "white");
   const bgStatus = useColorModeValue("gray.400", "#1a202c");
   const colorStatus = useColorModeValue("white", "gray.400");
@@ -61,8 +61,9 @@ function TablesTableRow({item,link,deleteFunction,refetch,Notify}) {
             )
           }
         })}
-      
-        <Td>
+      {
+        permission &&(
+          <Td>
           <Flex direction={"row"} justifyContent={"space-between"}>
             <Link to={`${link+item.id}`}>
               <Button p="0px" bg="transparent" variant="no-hover">
@@ -92,6 +93,9 @@ function TablesTableRow({item,link,deleteFunction,refetch,Notify}) {
           </Flex>
           
         </Td>
+        )
+      }
+       
       </Tr>
   
   );

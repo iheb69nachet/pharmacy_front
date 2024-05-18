@@ -20,6 +20,7 @@ import { useAuth } from "../../auth-context/auth.context";
 import AuthApi from "../../api/auth";
 
 import { useHistory } from "react-router-dom";
+import { hasPermission } from "helpers/permission";
 
 function SignIn() {
   // Chakra color mode
@@ -74,7 +75,13 @@ function SignIn() {
     user = JSON.stringify(user);
     setUser(user);
     localStorage.setItem("user", user);
-    return   history.push("/admin/users");
+    if(hasPermission('view users')){
+      return   history.push("/admin/users");
+
+    }else if(hasPermission('view products')){
+      return   history.push("/admin/products");
+
+    }
   };
 
   return (

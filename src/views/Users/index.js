@@ -21,6 +21,7 @@ import TablesTableRow from "components/Tables/TablesTableRow";
 import { tablesProjectData, tablesTableData } from "variables/general";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { toast } from "react-toastify";
+import { hasPermission } from "helpers/permission";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -32,6 +33,7 @@ const Users = () => {
       const response=await UsersApi.fetchUsers()
       setUsers(response.data.data);
     } catch (error) {
+      toast.error(error.response.data.message)
       
     } finally {
       setLoading(false);
@@ -87,6 +89,7 @@ const Users = () => {
                     refetch={fetchUsers}
                     Notify={Notify}
                     key={row.id}
+                    permission={hasPermission("edit users")}
                    
                   />
                   )

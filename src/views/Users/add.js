@@ -24,9 +24,10 @@ const AddUsers = () => {
         try {
             console.log(values);
             const response=await UsersApi.AddUsers(values)
-        //   const response = await axios.post('https://your-api-endpoint.com/api/submit', values);
         toast(response.data.message)
         } catch (error) {
+        toast(error.response.data.message)
+
           console.error('Error submitting form', error);
         } finally {
           setSubmitting(false);

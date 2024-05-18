@@ -17,6 +17,7 @@ import PanelContainer from "../components/Layout/PanelContainer";
 import PanelContent from "../components/Layout/PanelContent";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { hasPermission } from "helpers/permission";
 export default function Dashboard(props) {
   const { ...rest } = props;
   // states and functions
@@ -81,14 +82,26 @@ export default function Dashboard(props) {
         return getRoutes(prop.views);
       }
       if (prop.layout === "/admin") {
-        return (
-          <Route
-            exact
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
+        if(prop.permission && hasPermission(prop.permission)){
+
+          return (
+            <Route
+              exact
+              path={prop.layout + prop.path}
+              component={prop.component}
+              key={key}
+            />
+          );
+        }else if(!prop.permission){
+          return (
+            <Route
+              exact
+              path={prop.layout + prop.path}
+              component={prop.component}
+              key={key}
+            />
+          );
+        }
       } else {
         return null;
       }
