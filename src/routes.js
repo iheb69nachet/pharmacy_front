@@ -31,6 +31,9 @@ import Customers from "views/Customers";
 import EditCustomer from "views/Customers/edit";
 import AddSales from "views/sales/add";
 import Sales from "views/sales";
+import AddPurchase from "views/purshaces/add";
+import Purchases from "views/purshaces";
+import Messenger from "views/Chat/Messenger";
 
 var dashRoutes = [
   {
@@ -145,11 +148,32 @@ var dashRoutes = [
     permission:'edit customers'
 
   },
+  //purchases
+  {
+    path: "/purchases",
+    name: "Purshaces",
+    icon: <PersonIcon color="inherit" />,
+    component: Purchases,
+    layout: "/admin",
+    hide:false,
+    permission:'edit customers'
+
+  },
+  {
+    path: "/add/purchases",
+    name: "AddPurshace",
+    icon: <PersonIcon color="inherit" />,
+    component: AddPurchase,
+    layout: "/admin",
+    hide:true,
+    permission:'edit customers'
+
+  },
   {
     path: "/chat",
     name: "Chat",
     icon: <ProductIcon color="inherit" />,
-    component: Chat,
+    component: Messenger,
     layout: "/admin",
   },
   
@@ -161,15 +185,15 @@ var dashRoutes = [
     category: "account",
     state: "pageCollapse",
     views: [
-      {
-        path: "/profile",
-        name: "Profile",
-        rtlName: "لوحة القيادة",
-        icon: <PersonIcon color="inherit" />,
-        secondaryNavbar: true,
-        component: Profile,
-        layout: "/admin",
-      },
+      // {
+      //   path: "/profile",
+      //   name: "Profile",
+      //   rtlName: "لوحة القيادة",
+      //   icon: <PersonIcon color="inherit" />,
+      //   secondaryNavbar: true,
+      //   component: Profile,
+      //   layout: "/admin",
+      // },
       {
         path: "/signin",
         name: "Sign In",

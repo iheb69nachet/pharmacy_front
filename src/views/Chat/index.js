@@ -10,19 +10,15 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
-  const sendMessage = () => {
-    if (inputValue.trim() !== '') {
-      setMessages([...messages, { text: inputValue, sender: 'user' }]);
-      setInputValue('');
-    }
-  };
 
   return (
-    <Flex>
+    <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
         <Card>
             <CardHeader>sdfds</CardHeader>
             <CardBody>
-           <SocialProfileWithImage/>
+              <SocialProfileWithImage/>
+              <SocialProfileWithImage/>
+
             </CardBody>
         </Card>
         {/* <SocialProfileWithImage/> */}

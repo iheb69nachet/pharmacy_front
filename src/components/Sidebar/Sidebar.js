@@ -226,7 +226,8 @@ function Sidebar(props) {
         alignItems="center"
         fontSize="11px"
       >
-        <CreativeTimLogo w="32px" h="32px" me="10px" />
+        {/* <CreativeTimLogo w="32px" h="32px" me="10px" /> */}
+        <img src=""/>
         <Text fontSize="sm" mt="3px">
           {logoText}
         </Text>

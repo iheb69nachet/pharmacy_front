@@ -183,9 +183,8 @@ const EditProduct = () => {
                             <FormControl isInvalid={form.errors.type && form.touched.type}>
                               <FormLabel htmlFor="type">Type</FormLabel>
                               <Select {...field} id="type" placeholder="Select type">
-                                <option value="admin">Admin</option>
-                                <option value="responsable">Responsable</option>
-                                <option value="employe">Employe</option>
+                              <option value="pharmaceutique">pharmaceutique</option>
+                              <option value="para-pharmaceutique">para-pharmaceutique</option>
                               </Select>
                               <FormErrorMessage>{form.errors.type}</FormErrorMessage>
                             </FormControl>
