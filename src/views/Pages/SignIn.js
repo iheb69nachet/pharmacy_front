@@ -85,7 +85,15 @@ function SignIn() {
   };
 
   return (
-    <Flex position="relative" mb="40px">
+    <Flex position="relative" 
+    bgImage={signInImage}
+    bgRepeat={"no-repeat"}
+    w="100%"
+    h="100vh"
+    bgSize="cover"
+    bgPosition="100%"
+    
+    >
       <Flex
         h={{ sm: "initial", md: "75vh", lg: "85vh" }}
         w="100%"
@@ -233,7 +241,7 @@ function SignIn() {
             </Flex>
           }
         </Flex>
-        <Box
+        {/* <Box
           display={{ base: "none", md: "block" }}
           overflowX="hidden"
           h="100%"
@@ -246,11 +254,10 @@ function SignIn() {
             w="100%"
             h="100%"
             bgSize="cover"
-            bgPosition="50%"
-            position="absolute"
+            bgPosition="100%"
             borderBottomLeftRadius="20px"
           ></Box>
-        </Box>
+        </Box> */}
       </Flex>
     </Flex>
   );

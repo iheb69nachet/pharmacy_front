@@ -37,6 +37,16 @@ import Messenger from "views/Chat/Messenger";
 
 var dashRoutes = [
   {
+    path: "/dashboard",
+    name: "Dashboard",
+    icon: <PersonIcon color="inherit" />,
+    component: Dashboard,
+    layout: "/admin",
+    hide:false,
+    permission:'view users'
+
+  },
+  {
     path: "/users",
     name: "Human Resource",
     icon: <PersonIcon color="inherit" />,
